@@ -1,0 +1,151 @@
+body{  /*기본 body에 대한 설정*/
+    text-align: center;
+    margin: 0 auto;
+    background-color: rgb(56, 48, 48);
+}
+.container {
+    display: grid; /*grid를 사용하여 레이아웃을 구성함*/
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    row-gap: 50px; /* grid gap을 활용하여 디자인*/
+    column-gap: 50px;
+}
+.title { /*header에 대한 css*/
+    width: auto;
+    max-width: 100%;
+    min-width: 100%;
+    font-family: fantasy;
+    font-size : 50px;
+    border: 4px solid black;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px gray;
+    background-color: bisque;
+    border-radius: 40px;
+}
+.title:hover{  /* pseudo class 활용 */
+    background-color: silver;
+}
+nav p{ /* combinator 활용 */
+    font-size: 30px;
+} 
+nav a{ /* combinator 활용 */
+    color: skyblue;
+}
+nav a:active{ /* pseudo class 활용(마우스 누르고 있는 동안) */
+    color: blue; /* 마우스를 누르고 있는 동안 파란 글씨 띄워짐*/
+}
+nav a:link {   /* pseudo class 활용 */
+    text-decoration: none; 
+}
+nav a:visited {  /* pseudo class 활용 */
+    text-decoration: none; /* text-decoration 활용*/
+}
+[title|=go]{  /*Attribute Selector 활용*/
+    text-shadow: 1px 1px 2px gray;
+}
+.list{ /*'서울 버스 정류소 리스트' 버튼에 대한 grid 영역 지정*/
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.button{
+    width: fit-content;
+    font-size : 50px;
+    text-shadow: 1px 1px 2px gray;
+    background-color: rgb(145, 123, 96);
+    color: rgb(238, 255, 255);
+    border-radius: 40px;
+}
+.button:active{ /* pseudo class 활용 */
+    color: black;
+}
+.button:hover{ /* pseudo class 활용 */
+    background-color: silver;
+}
+footer{
+    margin-top: 30px;
+    text-align: center;
+}
+footer p{ /* combinator 활용 */
+    color: gray;
+}
+.output{
+    text-align: center;
+    text-shadow: 1px 1px 2px gray;
+    font-size: 30px;
+    color:white;
+}
+.output:hover{ /* pseudo class 활용 */
+    color:brown;
+}
+.find{ /* 검색버튼에 대한 css */
+    width: 78%;
+    height: 35px;
+    font-size: 25px;
+    border: 1.5px solid rgb(64, 100, 98);
+    background-color: rgb(145, 123, 96);
+}
+input::placeholder{ /* pseudo element 활용 */
+    color: rgb(238, 255, 255);
+}
+.find:hover{ /* pseudo class 활용 */
+    background-color: rgb(187, 176, 227);
+}
+.seoulbus{ 
+    text-align: center;
+}
+.kakaomap{ /* 카카오맵에 대한 css */
+    border: 2px solid rgb(95, 150, 147);
+    border-style: dashed; 
+    width: auto;
+    max-width: 600px;
+    height: 600px;
+    border-radius: 40px;
+}
+#click{ /* 검색버튼에 대한 css */
+    height: 42px;
+    margin-bottom: 0px;
+    font-size: 20px;
+    color :rgb(145, 123, 96);
+    background-color: rgb(37, 33, 33);
+    border-radius: 40px;
+}
+#click:hover{ /* pseudo class 활용 */
+    color:blueviolet;
+}
+.pad{
+    padding-left: 50px;
+}
+
+@media only screen and (max-width: 900px){ /*반응형 웹(media query 사용)*/
+    .container {
+        display: grid; /*grid를 사용하여 레이아웃을 구성함*/
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(3, auto);
+        row-gap: 50px;
+        column-gap: 50px;
+    }
+    .title { 
+        width: auto;
+        max-width: 100%;
+        min-width: 100%;
+        font-family: fantasy;
+        font-size : 50px;
+        border: 4px solid black;
+        margin-bottom: 30px;
+        text-shadow: 1px 1px 2px gray;
+        background-color: sandybrown;
+        border-radius: 40px;
+    }
+    .list{
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+    .title p::after{ /* pseudo element 활용 */
+        content: "(mobile)";
+    }
+    .item P::after{ /* pseudo element 활용 */
+        content: "(moblie)";
+    }
+    .item:nth-child(2) {order: 3;} /* nth-child 활용 */
+    .item:nth-child(3) {order: 2;}
+}

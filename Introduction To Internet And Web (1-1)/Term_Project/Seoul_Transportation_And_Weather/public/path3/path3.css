@@ -1,0 +1,137 @@
+body{ /*기본 body에 대한 설정*/
+    text-align: center;
+    margin: 0 auto;
+    background-color: rgb(56, 48, 48);
+}
+.title { 
+    font-family: fantasy;
+    font-size : 50px;
+    border: 4px solid black;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px gray;
+    background-color: bisque;
+    border-radius: 40px;
+}
+.title:hover{ /* pseudo class 활용 */
+    background-color: silver;
+}
+#weather{ /* float 활용 */
+    float: left;
+    border: 3px solid rgb(71, 155, 79);
+    width: 40%;
+    border-style: dashed;
+    margin-left: 80px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 40px;
+}
+.search{ /*검색창 디자인*/
+    font-size : 45px;
+    text-shadow: 1px 1px 2px gray;
+    background-color: rgb(145, 123, 96);
+    margin-bottom: 10px;
+    width: 90%;
+    border-radius: 10px;
+}
+#click:hover{ /* pseudo class 활용 */
+    color: lightcoral;
+}
+#click{ /*검섹 버튼 디자인*/
+    height: 42px;
+    margin-bottom: 100px;
+    margin-top: 20px;
+    font-size: 20px;
+    color :rgb(145, 123, 96);
+    background-color: rgb(37, 33, 33);
+    border-radius: 40px;
+}
+.title p::after{ /*pseudo element 사용*/
+    content: " (종관기상관측일자료 데이터 조회 기능)";
+}
+
+input::placeholder{  /*pseudo element 사용*/
+    color: rgb(165, 151, 151); 
+}
+
+.list{ /* float 활용 */
+    float: right;
+    width: 40%;
+    margin-right: 80px;
+    margin-top: 30px;
+}
+#tm{ 
+    margin-top: 50px;
+    color:white;
+    font-family: fantasy;
+    font-size: 30px;
+}
+#tm:hover{ /* pseudo class 활용 */
+    color:blueviolet;
+}
+li:hover{ /* pseudo class 활용 */
+    color:blueviolet;
+}
+li {
+    list-style: none; /* 특유의 디자인을 삭제하기 위해 */
+    color:white;
+    text-align: center;
+    font-family: fantasy;
+    font-size: 30px;
+}
+
+footer{ /* clear 활용 */
+    clear: both;
+    text-align: center;
+    margin-top: 30px;
+}
+footer p{ /* combinator 활용 */
+    color: gray;
+}
+nav p{ /* combinator 활용 */
+    font-size: 30px;
+} 
+nav a{ /* combinator 활용 */
+    color: skyblue;
+}
+nav a:active{ /* pseudo class 활용(마우스 누르고 있는 동안) */
+    color: blue;
+}
+nav a:link {   /* pseudo class 활용 */
+    text-decoration: none; 
+}
+nav a:visited {  /* pseudo class 활용 */
+    text-decoration: none; 
+}
+
+
+@media only screen and (max-width: 900px){
+    .title p::after{ /* pseudo element 활용 */
+        content: "(mobile)";
+    }
+    .title { 
+        font-family: fantasy;
+        font-size : 50px;
+        border: 4px solid black;
+        margin-bottom: 30px;
+        text-shadow: 1px 1px 2px gray;
+        background-color: sandybrown;
+        border-radius: 40px;
+    }
+    #weather{ 
+        text-align: center;
+        border: 3px solid rgb(205, 205, 205);
+        width: 100%;
+        border-style: dashed;
+        margin: auto;
+        border-radius: 40px;
+    }
+    .container{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(2, auto);
+    }
+    .list{ 
+        width: 100%;
+        text-align: center;
+    }
+}

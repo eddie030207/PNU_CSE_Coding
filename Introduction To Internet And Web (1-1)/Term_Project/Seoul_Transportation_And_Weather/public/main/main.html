@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="main.css"> <!--main css와 연동-->
+    <meta charset = "UTF-8">
+    <body>
+        <div class="container"> <!--grid 속성을 지정해준 div-->
+            <div class="div1"> 
+                <p>서울특별시 <br> 대중교통/날씨 정보 조회 서비스</p>
+            </div>
+        
+            <a onclick="location.href='/path1/path1.html'"> <!-- a tag를 전체 div를 감싸서 활용, 클릭하면 이동-->
+            <div class="div2"> 
+                <span class="hov-ani">
+                    <img src="bus-static.png" alt="버스 사진입니다." class="static"> <!-- main의 각 image에 대체 텍스트(alt)를 명시했습니다.-->
+                    <img src="bus.gif" alt="버스 동영상입니다." class="animated">
+                </span>
+                    <p>서울 버스 정류장 <br> 정보 확인하기</p>
+            </div></a>
+
+            <a onclick="location.href='/path2/path2.html'"> <!-- a tag를 전체 div를 감싸서 활용, 클릭하면 이동-->
+            <div class="div2">
+                <span class="hov-ani">
+                    <img src="subway-static.png" alt="지하철 사진입니다." class="static">
+                    <img src="subway.gif" alt="지하철 동영상입니다." class="animated">
+                </span>
+                    <p>서울 지하철역 <br> 정보 확인하기</p>
+            </div></a>
+
+            <a onclick="location.href='/path3/path3.html'"> <!-- a tag를 전체 div를 감싸서 활용, 클릭하면 이동-->
+            <div class="div2">
+                <span class="hov-ani">
+                    <img src="weather-static.png" alt="날씨 사진입니다." class="static">
+                    <img src="weather.gif" alt="날씨 동영상입니다." class="animated">
+                </span>
+                    <p> 기상청 날씨데이터 확인하기 </p>    
+            </div></a>
+        </div>  
+        
+        <footer>
+            <p>2022 TERM PROJECT 박유현</p>
+        </footer>
+    </body>
+</html>

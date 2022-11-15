@@ -1,0 +1,115 @@
+body{ /*기본 body에 대한 설정*/
+    text-align: center;
+    margin: 0 auto;
+    background-color: rgb(56, 48, 48);
+    width: fit-content;
+}
+.container {
+    display: grid; /*grid를 사용하여 레이아웃을 구성함*/
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(3, auto);
+    row-gap: 50px;
+}
+.title {
+    font-family: fantasy;
+    font-size : 50px;
+    border: 4px solid black;
+    text-shadow: 1px 1px 2px gray;
+    background-color: bisque;
+    border-radius: 40px;
+}
+.title:hover{  /* pseudo class 활용 */
+    background-color: silver;
+}
+.button:hover{/* pseudo class 활용 */
+    background-color: silver;
+}
+footer{
+    margin-top: 30px;
+    text-align: center;
+}
+footer p{ /* combinator 활용 */
+    color: gray;
+}
+nav p{ /* combinator 활용 */
+    font-size: 30px;
+} 
+nav a{ /* combinator 활용 */
+    color: skyblue;
+}
+nav a:active{ /* pseudo class 활용(마우스 누르고 있는 동안) */
+    color: blue;
+}
+nav a:link {   /* pseudo class 활용 */
+    text-decoration: none; 
+}
+nav a:visited {  /* pseudo class 활용 */
+    text-decoration: none; 
+}
+/*Attribute Selector 활용*/
+[title|=go]{ 
+    text-shadow: 1px 1px 2px gray;
+}
+.seoulsubway{
+    text-align: center;
+}
+table{
+    width: 100%;
+    border: 1px solid gray;
+}
+td, th{
+    border: 1.5px solid rgb(189, 176, 176);
+    color:lightgray;
+}
+tr:hover{ /* pseudo class 활용 */
+    background-color: rgb(94, 94, 230);
+    cursor: grab;
+}
+#box{ /* select input에 대한 css */
+    width: 40%;
+    height: 40px;
+    text-align: center;
+    font-size: 29px;
+    background : linear-gradient( to right, rgb(52, 52, 52), lightgray);
+    border-radius: 40px;
+}
+select option{ /* combinator 활용 */
+    background: lightgray;
+}
+.kakaomap{
+    border-radius: 40px;
+    border: 1.5px solid rgb(28, 154, 148);
+    text-align: center;
+} 
+
+
+@media only screen and (max-width: 900px){
+    .title p::after{ /* pseudo element 활용 */
+        content: "(mobile)";
+    }
+    td, th{
+        border: 1.5px solid rgb(121, 0, 0);
+        color:rgb(46, 45, 51);
+    }
+    table{
+        width: 100%;
+        border: 1px solid rgb(231, 220, 220);
+        border-style: dashed;
+        background-color: rgb(196, 176, 176);
+    }
+    .kakaomap{
+        border: 1.5px solid rgb(255, 198, 198);
+        border-style: dashed;
+    }
+    .title {
+        font-family: fantasy;
+        font-size : 50px;
+        border: 4px solid black;
+        margin-bottom: 30px;
+        text-shadow: 1px 1px 2px gray;
+        background-color: sandybrown;
+        border-radius: 40px;
+    }
+    
+}
+

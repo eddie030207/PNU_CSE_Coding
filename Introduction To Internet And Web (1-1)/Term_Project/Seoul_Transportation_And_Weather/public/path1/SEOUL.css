@@ -1,0 +1,95 @@
+table td:hover{ /*combinator 활용 */  /* pseudo class 사용 */
+    background: silver;  
+}
+table{ 
+    text-shadow: 1px 1px 2px gray;
+    font-size: 30px;
+}
+th, td {
+    border: 1.5px solid rgb(189, 176, 176);
+    border-radius: 10px;
+    color:rgb(45, 12, 12);
+    background-color: antiquewhite;
+}
+body{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: lightgray;
+}
+#seoulhead{
+    background: rgb(124, 137, 106);
+}
+.button{
+    font-size : 30px;
+    text-shadow: 1px 1px 2px gray;
+    background-color: rgb(145, 123, 96);
+}
+.button:hover{  /* pseudo class 사용 */
+    background-color: silver;
+}
+.container{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(2, auto);
+    row-gap: 10px;
+}
+.topmenu{
+    position: fixed;
+    font-size: 30px;
+    bottom: 10%;
+    right: 10%;
+    border: 2px solid gray;
+    text-shadow: 1px 1px 2px gray;
+    border-style: dashed;
+}
+a{
+    color: rgb(181, 105, 137);
+}
+a:link { /* pseudo class 사용 */
+    text-decoration: none; 
+}
+a:visited {  /* pseudo class 사용 */
+    text-decoration: none; 
+}
+a:hover {  /* pseudo class 사용 */
+    color: blue; 
+}
+a:active {  /* pseudo class 사용 */
+    text-decoration: none; 
+}
+
+
+
+@media only screen and (max-width: 900px){ /*반응형 웹(media query 사용)*/
+    #seoulhead::after{ /* pseudo element 사용 */
+        content: "(moblie)";
+    }
+    #seoulhead{
+        background: rgb(162, 174, 145);
+        color:black;
+    }
+    .topmenu{
+        position: fixed; /*  position attribute 활용 */
+        font-size: 30px;
+        bottom: 0%;
+        right: 0%;
+        border: 4px solid gray;
+        text-shadow: 1px 1px 2px rgb(227, 213, 213);
+        border-style: dashed;
+    }
+    .button{
+        font-size : 30px;
+        text-shadow: 1px 1px 2px gray;
+        background-color: rgb(145, 123, 96);
+    }
+    a{
+        color: rgb(32, 30, 30);
+    }
+    body{
+        display: flex; /* display 속성 활용 */
+        justify-content: center; /* justify-content활용 */
+        text-align: center; 
+        background-color: rgb(246, 183, 183);
+    }
+}

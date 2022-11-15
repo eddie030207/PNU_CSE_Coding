@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<link rel="stylesheet" type="text/css" href="path3.css"> <!--path3 css와 연동 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <body>
+        <header> <!-- Semantic element(header, navigation, footer) 활용 -->
+            <div class="title">
+                <p>기상청 날씨데이터 확인하기<br></p>
+            </div>
+        </header>
+
+        <div class="nav">
+            <nav> <!-- Semantic element(header, navigation, footer) 활용 -->
+                <p>
+                <a href="/main/main.html" title="go-back" >메인화면으로 돌아가기 </a> |
+                <a href="/path1/path1.html" title="go-bus">서울 버스 정류장 정보 확인하기</a> |
+                <a href="/path2/path2.html" title="go-subway">서울 지하철역 정보 확인하기</a>
+                </p>
+            </nav>
+        </div>
+
+        <div class="container">
+            <div class="list">
+                <p id="tm"></p>
+                <ul> <!-- list 활용 -->
+                    <li id="avgTa"></li>
+                    <li id="minTa"></li>
+                    <li id="maxTa"></li>
+                    <li id="sumRn"></li>
+                    <li id="maxInsWs"></li>
+                    <li id="avgRhm"></li>
+                </ul>
+            </div>
+
+            <div id="weather">
+                <p style="color:white;font-size: 20px;margin-top: 120px;"> 확인하고 싶은 날씨데이터의 날짜를 입력하여주세요.<br>'확인할 수 있는 날짜의 범위 : 작일(어제)'</p>
+                <input class ="search" type="text" placeholder="YYYYMMDD 형식으로 입력"> <input type="button" id="click" onclick="weather()" value="눌러서 확인하기"><!-- input 활용 -->
+            </div>
+        </div>
+        
+        <footer>  <!-- Semantic element(header, navigation, footer) 활용 -->
+            <p>2022 TERM PROJECT 박유현</p>
+        </footer>
+    </body>
+</html>
+
+<script>
+    function weather() {
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = 'text' /* xml response type을 문자열로 설정*/
+    var day = document.querySelectorAll("input")[0].value;
+    console.log(day);
+    xhr.withCredentials = true;
+    xhr.addEventListener("readystatechange", function() {
+    if(this.readyState === 4) {
+        try{
+            console.log(this.responseText);
+            parser=new DOMParser();
+            var DATA=parser.parseFromString(this.responseText,"text/xml"); /* xml response 값을 받는 변수 설정 */
+            console.log(DATA);
+            var sumRn = DATA.getElementsByTagName("sumRn")[0].textContent;
+            if (sumRn.length == 0){ /* 일강수량이 0이면 해당 api 제공기관에서 0이라고 기입을 안해주고 공백으로 저장하여 예외 case에 대한 구현 */
+                sumRn += "0";
+            }
+            document.getElementById("tm").innerHTML = DATA.getElementsByTagName("tm")[0].textContent + "의 서울의 날씨데이터 : "; /* 값 할당 */
+            document.getElementById("avgTa").innerHTML = "평균 기온은 '" + DATA.getElementsByTagName("avgTa")[0].textContent +"°C' 입니다.";
+            document.getElementById("minTa").innerHTML = "최저 기온은 '" + DATA.getElementsByTagName("minTa")[0].textContent +"°C' 입니다.";
+            document.getElementById("maxTa").innerHTML = "최고 기온은 '" + DATA.getElementsByTagName("maxTa")[0].textContent +"°C' 입니다.";
+            document.getElementById("sumRn").innerHTML = "일 강수량은 '" + sumRn +"mm' 입니다.";
+            document.getElementById("maxInsWs").innerHTML = "순간 최대 풍속은 '" + DATA.getElementsByTagName("maxInsWs")[0].textContent +"m/s' 입니다.";
+            document.getElementById("avgRhm").innerHTML = "평균 상대습도는 '" + DATA.getElementsByTagName("avgRhm")[0].textContent +"%' 입니다.";
+        }
+        catch (e) { /* 에러 처리 구현 */
+            alert("YYYYMMDD 형식에 맞게 다시 입력해주세요.")
+        }
+    }
+    });
+    xhr.open("GET", "http://localhost:5500/weather?word=" + day);
+    xhr.send();
+    }
+
+</script>

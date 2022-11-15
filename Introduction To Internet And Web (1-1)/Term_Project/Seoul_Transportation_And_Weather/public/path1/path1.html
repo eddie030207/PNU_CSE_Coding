@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<link rel="stylesheet" type="text/css" href="path1.css"> <!--path1 css와 연동 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset = "UTF-8">
+    <body>
+        <center>
+            <header> <!-- Semantic element(header, navigation, footer) 활용 -->
+                <div class="title">
+                    <p>서울 버스 정류장 정보 확인하기<br></p>
+                </div>
+            </header>
+
+            <nav> <!-- Semantic element(header, navigation, footer) 활용 -->
+                <p>
+                <a href="/main/main.html" title="go-back" >메인 화면으로 돌아가기 </a> | <!-- a tag를 활용하여 링크 이동 + title 활용-->
+                <a href="/path2/path2.html" title="go-subway">서울 지하철역 정보 확인하기</a> |
+                <a href="/path3/path3.html" title="go-weather">기상청 날씨데이터 확인하기</a>
+                </p>
+            </nav>
+                
+            <div class="container"> <!-- grid 속성을 지정해준 div를 사용-->
+                <div class="list"> 
+                    <a onclick="location.href='/path1/SEOUL.html'"><input type="button" class="button" value="서울 버스 정류소 리스트"></a> <!-- input 사용-->
+                </div>
+
+                <div class="seoulbus item">
+                    <input class ="find" type="text" placeholder="검색하고 싶은 서울 정류소명 입력(기본값 종로 1가)"> <!-- input 사용 --> <input type="button" id="click" onclick="seoulbus(), makemap()" value="검색"> <!-- input 사용 --> 
+
+                    <div>
+                        <hr style="margin-top:0px">
+                        <br><div class="output"><span id="busname"></span></div><br><hr>
+                        <br><div class="output"><span id="busno"></span></div><br><hr>
+                        <br><div class="output"><span id="gpsx"></span></div><br><hr>
+                        <br><div class="output"><span id="gpsy"></span></div><br><hr>
+                    </div>
+                    
+                </div>
+
+                <div class="item">
+                    <div class = "pad">
+                        <p style="font-size: 20px; margin-bottom: 1px;color: rgb(255, 224, 224);font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;text-align: center;">KAKAO MAP API</p>
+                        <div class="kakaomap" id="map" ></div>
+                        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7a7c4e4b43e8f82099395e1d02a4d681&libraries=services"></script>
+                    </div>
+                </div>
+            </div>
+
+            <footer>  <!-- Semantic element(header, navigation, footer) 활용 -->
+                <p>2022 TERM PROJECT 박유현</p>
+            </footer>
+        </center>
+    </body>
+</html>
+
+<script>
+    var data = {}
+    function seoulbus(){ /* 서울 버스 정류소에 관한 정보를 뜨게 하는 function */
+      var xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+      var search = document.querySelectorAll("input")[1].value;  /* 사용한 input 중 2번째 value값 추출하기 */
+      xhr.addEventListener("readystatechange", function() {
+      if(this.readyState === 4) {
+        try{
+            console.log(this.responseText);
+            data = JSON.parse(this.responseText); /* response 받는 datatype이 JSON이기 때문에 JSON 형식으로 parse 받도록 함 */
+            document.getElementById("busname").innerHTML = "정류소명 : " + data.busStopLocationXyInfo.row[0].STOP_NM; /* 정류소명 값을 추출하여 끼워넣음*/
+            document.getElementById("busno").innerHTML ="정류소번호 : " + data.busStopLocationXyInfo.row[0].STOP_NO; /* 정류소번호 값을 추출하여 끼워넣음*/
+            document.getElementById("gpsx").innerHTML = "GPS X좌표(경도) : " + data.busStopLocationXyInfo.row[0].XCODE; /* 경도 값을 추출하여 끼워넣음*/
+            document.getElementById("gpsy").innerHTML ="GPS Y좌표(위도) : " + data.busStopLocationXyInfo.row[0].YCODE; /* 위도 값을 추출하여 끼워넣음*/
+          } 
+        catch (e) { /* 에러 처리 구현*/
+            alert("서울에는 없는 이름의 정류소입니다. 다시 입력하여 주세요.")
+        }
+      }
+      });
+      xhr.open("GET", "http://localhost:5500/seoulapi?word=" + search); /* input value 값이 들어가도록 설정*/
+      xhr.send();
+    }
+    
+    function makemap(){  /* kakaomap api에 관한 function */
+        var search = document.querySelectorAll("input")[1].value; /* input value 값 변수 지정*/
+    var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+    
+    var mapContainer = document.getElementById('map'), 
+        mapOption = {
+            center: new kakao.maps.LatLng(37.566826, 126.9786567),  /* default 중심좌표 */
+            level: 3
+        };  
+       
+    var map = new kakao.maps.Map(mapContainer, mapOption); 
+    var ps = new kakao.maps.services.Places(); 
+    ps.keywordSearch(search, placesSearchCB); /* 검색하는 키워드 값에 search 변수를 활용하여 input 값과 연동 */
+    
+    function placesSearchCB (data, status, pagination) {
+        if (status === kakao.maps.services.Status.OK) {
+            var bounds = new kakao.maps.LatLngBounds();
+    
+            for (var i=0; i<data.length; i++) {
+                displayMarker(data[i]);    
+                bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+            }       
+            map.setBounds(bounds);
+        } 
+    }
+    
+    function displayMarker(place) { 
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: new kakao.maps.LatLng(place.y, place.x) 
+        });
+        kakao.maps.event.addListener(marker, 'click', function() {
+            infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+            infowindow.open(map, marker);
+        });
+    }
+    map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);     /* 실시간 교통량을 보여주는 code*/
+    var mapTypeControl = new kakao.maps.MapTypeControl();   /* 일반 지도와 스카이뷰를 보여주는 code*/
+    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+    }
+    </script>
