@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "UTF8">
+        <style>
+        body {
+        width: 1060px;
+        margin: 0 auto;
+        }
+        #header {
+        background-color: black;
+        color: white;
+        margin: 0;
+        font-size: 42px;
+        background-size: 1060px 56px;
+        text-align: center;
+        }
+        #intro{
+        margin: 46px 0px;
+        font-size: 46px;
+        text-align: center;
+        }
+        .picture{
+        text-align: center;
+        padding: 0px 0px 35px;
+        width: 210px; 
+        height: 278px;
+        border-bottom: solid; 
+        border-bottom-color: rgba(207, 209, 213, 0.939);
+        border-bottom-width: thin; 
+        }
+        #footer{
+        text-align: center;
+        margin: 16px 0px;
+        }
+        #lbox{
+        text-align: center;
+        font-size: 24px;
+        width: 210px;
+        }
+        #sbox{
+        text-align: center;
+        font-size: 14px;
+        width: 210px;
+        }
+        .section{
+        margin: 0px 40px;  
+        width: 980px;  
+        }
+        .container {
+        display: grid;
+        margin: 70px 20px 0px;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, auto);
+        grid-column-gap: 33px;
+        grid-row-gap: 36px;
+        }
+
+        @media only screen and (max-width: 1060px){
+        .container {
+        display: grid;
+        margin: 52px 20px 0px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(6, auto);
+        grid-column-gap: 50px;
+        grid-row-gap: 36px;
+        }
+        .picture{
+        text-align: center;    
+        padding: 0px 0px 35px;
+        width: 431px; 
+        height: 278px;
+        border-bottom: solid; 
+        border-bottom-color: rgba(207, 209, 213, 0.939);
+        border-bottom-width: thin; 
+        }
+        #lbox{
+        text-align: center;
+        font-size: 24px;
+        width: 431px;
+        }
+        #sbox{
+        text-align: center;
+        font-size: 14px;
+        width: 431px;
+        }
+        .item:nth-child(1) {order: 1;}
+        .item:nth-child(2) {order: 2;} 
+        .item:nth-child(5) {order: 3;}
+        .item:nth-child(6) {order: 4;}
+        .item:nth-child(9) {order: 5;}
+        .item:nth-child(10) {order: 6;} 
+        .item:nth-child(3) {order: 7;}
+        .item:nth-child(4) {order: 8;}
+        .item:nth-child(7) {order: 9;}
+        .item:nth-child(8) {order: 10;} 
+        .item:nth-child(11) {order: 11;}
+        .item:nth-child(12) {order: 12;}   
+    }
+        </style>
+    </head>
+
+    <body>
+        <div id="header">
+        202255549 박유현
+        </div>
+           
+        <div class="section">
+            <h3 id="intro">Compare the products</h3>
+
+                <div class="container">
+
+                    <div class="picture item">
+                        <img src="images\sph-a5000.jpg">
+                    </div>
+                    <div class="picture item">
+                        <img src="images\sch-w120.jpg">  
+                    </div>
+                    <div class="picture item">
+                        <img src="images\sch-v500.jpg"> 
+                    </div>
+                    <div class="picture item">
+                        <img src="images\sch-s250.jpg">     
+                    </div>
+
+                    <div id="lbox" class="item">
+                        SPH-A5000
+                    </div>
+                    <div id="lbox" class="item">
+                        SCH-W120
+                    </div>
+                    <div id="lbox" class="item">
+                        SCH-V500
+                    </div>
+                    <div id="lbox" class="item">
+                        SCH-S250
+                    </div>
+
+                    <div id="sbox" class="item">
+                        세계 최초의 전자동 폴더
+                    </div>
+                    <div id="sbox" class="item">
+                        한국 최초의 WCDMA 폰
+                    </div>
+                    <div id="sbox" class="item">
+                        기로본능 로테이션 폴더폰
+                    </div>
+                    <div id="sbox" class="item">
+                        세계 최초의 500만 화소 카메라
+                        탑재 휴대폰
+                    </div>
+
+                </div>
+        </div>
+
+    <div id="footer">
+        <em>Copyright &#169; 2022 박유현</em>
+    </div>
+    </body>
+</html>
